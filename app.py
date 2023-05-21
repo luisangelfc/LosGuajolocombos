@@ -5,7 +5,7 @@ from flask import Flask, redirect, url_for
 
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registro_bp)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pppkizbroutle:14156362514v_R@localhost:5432/Guajolocombos'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://usuario:contraseña@localhost:5432/bd'
 db.init_app(app)
 
 @app.route('/', methods = ['GET', 'POST'])
