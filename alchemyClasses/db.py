@@ -8,6 +8,7 @@ class Usuario(db.Model):
     contrasenia = db.Column(db.String(128), nullable=False)
 
     def __init__(self, nombre, contrasenia):
+        self.id_usuario = Usuario.query.order_by(Usuario.id_usuario.desc()).first().id_usuario + 1 # Puede arreglarse desde la bd
         self.nombre = nombre
         self.contrasenia = contrasenia
 
