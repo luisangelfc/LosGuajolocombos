@@ -1,8 +1,6 @@
-import functools
-
 from models.model_cliente import nombreExistente, contraseniaSegura, registraCliente
 
-from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
 registro_bp = Blueprint('registro', __name__, url_prefix = '/registro')
 
@@ -12,14 +10,22 @@ def registro():
         usuario = request.form['usuario']
         contrasenia = request.form['contrasenia']
         if nombreExistente(usuario):
-            return 'Nombre de usuario en uso'
+            flash('Nombre de usuario en uso')
+            return redirect(url_for('registro.registro'))
         if not contraseniaSegura(contrasenia):
-            return 'La contraseña es insegura'
+            flash('La contraseña es insegura')
+            return redirect(url_for('registro.registro'))
         registraCliente(usuario, contrasenia)
+        session.clear()
+        session['usuario'] = usuario
+        session['contrasenia'] = contrasenia
         return redirect(url_for('registro.success')) # Esto debe llevar a la página de inicio
     else:
         return render_template('registro.html')
 
 @registro_bp.route('/success', methods = ['GET'])
 def success():
-    return render_template('placeholder_inicio.html') # Cuando haya un menú de inicio hay que redirigir a ese.
+    if session.get('usuario') != None:
+        return render_template('inicio.html') # Cuando haya un menú de inicio hay que redirigir a ese.
+    flash("Error: no se ha iniciado sesión")
+    return redirect(url_for('registro.registro'))

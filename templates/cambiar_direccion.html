@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Actualizar Direccion</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <h1>Actualizar Direccion</h1>
+        <br>
+        <form action="/info/dir_change" method="post">
+            <label for="direccion">Direccion:</label>
+            <textarea id="direccion" name="direccion" rows="4" cols="50" required></textarea><br><br>
+
+            <input type="submit" value="Actualizar">
+        </form>
+        <br>
+        {% for message in get_flashed_messages() %}
+         <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </body>
+</html>

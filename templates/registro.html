@@ -17,5 +17,9 @@
             
             <input type="submit" value="Registrar">
         </form>
+        <br>
+        {% for message in get_flashed_messages() %}
+         <div class="flash">{{ message }}</div>
+        {% endfor %}
     </body>
 </html>

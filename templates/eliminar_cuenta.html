@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Eliminar Cuenta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <h1>Eliminar Cuenta</h1>
+        <br>
+        <form action="/info/delete_user" onsubmit="return confirm('¿Estás seguro de querer borrar tu cuenta? Esta acción no se puede deshacer');" method="post">
+            <label for="contrasenia">Ingresa tu contraseña:</label>
+            <input type="text" id="contrasenia" name="contrasenia" required><br><br>
+
+            <input type="submit" value="Confirmar">
+        </form>
+        <br>
+        {% for message in get_flashed_messages() %}
+         <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </body>
+</html>

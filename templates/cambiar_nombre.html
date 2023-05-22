@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Actualizar Nombre</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <h1>Actualizar Nombre</h1>
+        <br>
+        <form action="/info/user_change" method="post">
+            <label for="nuevo_nombre">Nuevo Nombre:</label>
+            <input type="text" id="nuevo_nombre" name="nuevo_nombre" required><br><br>
+
+            <input type="submit" value="Actualizar">
+        </form>
+        <br>
+        {% for message in get_flashed_messages() %}
+         <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </body>
+</html>

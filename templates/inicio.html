@@ -6,8 +6,10 @@
         <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
     </head>
     <body>
-        <h1>Inicio</h1>
+        <h1>Bienvenido <span>{{ session.get('usuario') }}</span></h1>
         <br>
-        Aquí debería verse un menú de Inicio
+        <ul>
+            <li><a href = "{{ url_for('info.info') }}">Información de la cuenta</a></li>
+        </ul>
     </body>
 </html>
