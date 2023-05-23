@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Menu de Inicio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <h1>Bienvenido <span>{{ session.get('usuario') }}</span></h1>
+        <br>
+        <ul>
+            <li><a href = "{{ url_for('info.info') }}">Información de la cuenta</a></li>
+        </ul>
+    </body>
+</html>

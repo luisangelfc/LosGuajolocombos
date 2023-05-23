@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Información de la cuenta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <body>
+        <h1>Información de la cuenta</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ session.get('usuario') }}</td>
+                <td><form action="/info/user_change" method="get"><input type="submit" value="Actualizar"></form></td>
+            </tr>
+            <tr>
+                <th>Contraseña</th>
+                <td>********</td>
+                <td><form action="/info/password_change" method="get"><input type="submit" value="Actualizar"></form></td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>
+                    {% if direccion %}
+                    {{ direccion }}
+                    {% else %}
+                    Sin registrar
+                    {% endif %}
+                </td>
+                <td><form action="/info/dir_change" method="get"><input type="submit" value="Actualizar"></form></td>
+            </tr>
+        </table>
+        <br>
+        <form action="/info/delete_user" method="get"><input type="submit" value="Eliminar Cuenta"></form>
+        <br>
+        <br>
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+    </body>
+</html>
