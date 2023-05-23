@@ -42,7 +42,7 @@ class CategoriaInventario(db.Model):
 
 
 class CategoriaProducto(db.Model):
-    __tablename__ = 'model_categoria_producto.py'
+    __tablename__ = 'categoria_producto'
     id_categoria_producto = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(128), nullable=False, unique=True)
 
@@ -73,7 +73,7 @@ class Producto(db.Model):
     descripcion = db.Column(db.Text, nullable=False)
     precio = db.Column(db.Float, nullable=False)
     disponible = db.Column(db.Boolean, nullable=False)
-    id_categoria_producto = db.Column(db.Integer, db.ForeignKey('model_categoria_producto.py.id_categoria_producto'),
+    id_categoria_producto = db.Column(db.Integer, db.ForeignKey('categoria_producto.id_categoria_producto'),
                                       nullable=False)
 
     def __init__(self, nombre, descripcion, precio, disponible, id_categoria_producto):
