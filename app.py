@@ -34,12 +34,12 @@ def product():
 
 @app.route('/obtainProductInfo', methods=['POST'])
 def obtain_product_info():
-    if request.method == 'POST' :
-        id_producto = request.form['id_producto']
-        if id_producto is None :
+    if request.method == 'POST':
+        print(request.form)
+        if request.form.__len__() != 1:
             return render_template('obtainProductInfo.html')
         else:
-            return render_template('obtainProductInfo.html', id_prd = id_producto)
+            return render_template('obtainProductInfo.html', id_prd = request.form['id_producto'])
 
 
 @app.route('/itinerarios')
