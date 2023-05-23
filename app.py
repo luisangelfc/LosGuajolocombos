@@ -5,7 +5,7 @@ from alchemyClasses.db import db
 
 app = Flask(__name__)
 app.register_blueprint(productosBlueprint)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/ingenieria'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/ingenieria'
 app.config.from_mapping(
     SECRET_KEY = 'dev'
 )
