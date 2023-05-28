@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reportes de Venta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reportes de Venta</h1>
+    
+    <h2>Reportes del día</h2>
+    {% if not reports_day %}
+        <p>{{ no_sales_message }}</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Final</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports_day %}
+                <tr>
+                    <td>{{ report.id_reporte_ventas }}</td>
+                    <td>{{ report.fecha_inicio }}</td>
+                    <td>{{ report.fecha_fin }}</td>
+                    <td>{{ report.total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <h2>Reportes de la semana</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Final</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports_week %}
+            <tr>
+                <td>{{ report.id_reporte_ventas }}</td>
+                <td>{{ report.fecha_inicio }}</td>
+                <td>{{ report.fecha_fin }}</td>
+                <td>{{ report.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
