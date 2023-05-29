@@ -7,8 +7,7 @@ from controllers.controller_nuevo_cliente import registro_bp
 from controllers.controller_info_cuenta import info_bp
 from datetime import datetime, timedelta
 from controllers.controller_ordenes import ordenesBlueprint
-from controllers.controller_customer_orders import customerOrdersBlueprint
-
+from controllers.controller_cliente_monitorea_pedido import customerOrdersBlueprint
 
 
 from sqlalchemy import and_
@@ -20,6 +19,7 @@ app.register_blueprint(productosBlueprint)
 app.register_blueprint(itinerariosBlueprint)
 app.register_blueprint(ordenesBlueprint)
 app.register_blueprint(customerOrdersBlueprint)
+
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/postgres'

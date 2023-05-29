@@ -1,0 +1,15 @@
+<h1>Detalles de la orden</h1>
+<p>Orden ID: {{ order.id_orden }}</p>
+<p>Usuario ID: {{ order.id_usuario }}</p>
+<p>Estatus: {{ order.estatus }}</p>
+
+<form method="POST" action="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">
+  <select name="estatus">
+    <option value="order placed">Orden realizada</option>
+    <option value="order accepted">Orden aceptada</option>
+    <option value="order in process">Orden en proceso</option>
+    <option value="order shipped">Orden enviada</option>
+    <option value="order delivered">Order entregada</option>
+  </select>
+  <input type="submit" value="Cambia">
+</form>

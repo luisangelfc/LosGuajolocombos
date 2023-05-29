@@ -1,0 +1,11 @@
+<h1>Customer Orders</h1>
+
+{% if orders %}
+  <ul>
+    {% for order in orders %}
+      <li><a href="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">Order ID: {{ order.id_orden }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No orders found.</p>
+{% endif %}

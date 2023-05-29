@@ -1,0 +1,7 @@
+<h1>Detalles de la Orden</h1>
+<p>Orden ID: {{ order.id_orden }}</p>
+<p>Estatus: {{ order.estatus }}</p>
+<p>Fecha: {{ order.fecha }}</p>
+<p>Total: {{ order.total }}</p>
+
+<a href="{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}">Refresh</a>

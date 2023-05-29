@@ -4,7 +4,7 @@ from alchemyClasses.db import db, Orden
 ordenesBlueprint = Blueprint('ordenes', __name__, url_prefix='/ordenes')
 
 
-@ordenesBlueprint.route('/create', methods=['GET', 'POST'])
+@ordenesBlueprint.route('/crear', methods=['GET', 'POST'])
 def create_order():
     if request.method == 'POST':
         # Get form data
@@ -22,6 +22,7 @@ def create_order():
 
         # Redirect to the order detail page
         return redirect(url_for('ordenes.view_order', order_id=new_order.id_orden))
+        
 
     # Render the order creation form
     return render_template('crear_orden.html')
@@ -44,4 +45,20 @@ def view_order(order_id):
         return redirect(url_for('ordenes.view_order', order_id=order.id_orden))
 
     # Render the order detail page
-    return render_template('ver_orden.html', order=order)
+    return render_template('cambiar_estatus.html', order=order)
+
+@ordenesBlueprint.route('/interfaz')
+def order_management():
+    # Retrieve all orders from the database
+    orders = Orden.query.all()
+
+    # Render the order management page
+    return render_template('interfaz_ordenes.html', orders=orders)
+
+@ordenesBlueprint.route('/ver_ordenes')
+def customer_orders():
+    # Retrieve all orders from the database
+    orders = Orden.query.all()
+
+    # Render the orders list page
+    return render_template('vendedor_ver_ordenes.html', orders=orders)
