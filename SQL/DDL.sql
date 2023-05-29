@@ -58,11 +58,11 @@ CREATE TABLE itinerario (
 );
 
 CREATE TABLE orden (
-	id_orden SERIAL PRIMARY KEY,
-	id_usuario INT REFERENCES usuario(id_usuario),
-	estatus BOOLEAN NOT NULL, --FALTA COMPROBAR
-	fecha DATE NOT NULL,
-	total REAL NOT NULL
+    id_orden SERIAL PRIMARY KEY,
+    id_usuario INT REFERENCES usuario(id_usuario),
+    estatus VARCHAR(20) NOT NULL, -- Change the data type to VARCHAR
+    fecha DATE NOT NULL,
+    total REAL NOT NULL
 );
 
 CREATE TABLE vendedor_atender_orden(

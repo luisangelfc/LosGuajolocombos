@@ -115,7 +115,7 @@ class Orden(db.Model):
     __tablename__ = 'orden'
     id_orden = db.Column(db.Integer, primary_key=True)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
-    estatus = db.Column(db.Boolean, nullable=False)
+    estatus = db.Column(db.String(20), nullable=False)  # Change the data type to String
     fecha = db.Column(db.Date, nullable=False)
     total = db.Column(db.Float, nullable=False)
 

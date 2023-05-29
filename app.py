@@ -6,6 +6,11 @@ from controllers.controller_itinerarios import itinerariosBlueprint, obtener_iti
 from controllers.controller_nuevo_cliente import registro_bp
 from controllers.controller_info_cuenta import info_bp
 from datetime import datetime, timedelta
+from controllers.controller_ordenes import ordenesBlueprint
+from controllers.controller_customer_orders import customerOrdersBlueprint
+
+
+
 from sqlalchemy import and_
 
 app = Flask(__name__, instance_relative_config=True)
@@ -13,7 +18,11 @@ app.register_blueprint(registro_bp)
 app.register_blueprint(info_bp)
 app.register_blueprint(productosBlueprint)
 app.register_blueprint(itinerariosBlueprint)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/guajolocombos'
+app.register_blueprint(ordenesBlueprint)
+app.register_blueprint(customerOrdersBlueprint)
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/postgres'
 
 app.config.from_mapping(
     SECRET_KEY='dev'
@@ -73,6 +82,7 @@ def sales_reports():
         no_sales_message = "No hay ventas el día de hoy."
 
     return render_template('sales_report.html', reports_day=reports_day, reports_week=reports_week, no_sales_message=no_sales_message)
+
 
 
 if __name__ == '__main__':
