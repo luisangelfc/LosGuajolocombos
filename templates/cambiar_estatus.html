@@ -1,15 +1,114 @@
-<h1>Detalles de la orden</h1>
-<p>Orden ID: {{ order.id_orden }}</p>
-<p>Usuario ID: {{ order.id_usuario }}</p>
-<p>Estatus: {{ order.estatus }}</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #5c9edc, #00d2ff);
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    
+    h1 {
+      color: #222;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    
+    form {
+      margin-top: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+    
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      font-size: 18px;
+    }
+    
+    input[type="submit"] {
+      padding: 10px 20px;
+      background: linear-gradient(to bottom right, #84b8e4, #2c91e8);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 22px;
+      transition: background-color 0.3s ease;
+    }
+    
+    input[type="submit"]:hover {
+      background: linear-gradient(to bottom right, #558ec6, #146cb1);
+    }
+    
+    .return-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .return-button a {
+      text-decoration: none;
+      background-color: #84b8e4;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 3px;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .return-button a:hover {
+      background-color: #558ec6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Detalles de la orden</h1>
+    <p>Orden ID: {{ order.id_orden }}</p>
+    <p>Usuario ID: {{ order.id_usuario }}</p>
+    <p>Estatus: {{ order.estatus }}</p>
 
-<form method="POST" action="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">
-  <select name="estatus">
-    <option value="order placed">Orden realizada</option>
-    <option value="order accepted">Orden aceptada</option>
-    <option value="order in process">Orden en proceso</option>
-    <option value="order shipped">Orden enviada</option>
-    <option value="order delivered">Order entregada</option>
-  </select>
-  <input type="submit" value="Cambia">
-</form>
+    <form method="POST" action="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">
+      <label for="estatus">Cambiar estatus:</label>
+      <select name="estatus" id="estatus">
+        <option value="orden realizada">Orden realizada</option>
+        <option value="orden aceptada">Orden aceptada</option>
+        <option value="orden en proceso">Orden en proceso</option>
+        <option value="orden enviada">Orden enviada</option>
+        <option value="orden enviada">Orden enviada</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Cambiar">
+    </form>
+    
+    <div class="return-button">
+      <a href="{{ url_for('ordenes.order_management') }}">Regresar a la interfaz</a>
+    </div>
+  </div>
+</body>
+</html>
