@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Registro</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
-    </head>
-    <body>
+<head>
+    <title>Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
         <h1>Registro</h1>
         <br>
         <form action="/registro" method="post">
-            <label for="usuario">Usuario:</label>
-            <input type="text" id="usuario" name="usuario" required><br><br>
-            
-            <label for="contrasenia">Contraseña:</label>
-            <input type="password" id="contrasenia" name="contrasenia" required><br><br>
-            
-            <input type="submit" value="Registrar">
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasenia">Contraseña:</label>
+                <input type="password" id="contrasenia" name="contrasenia" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
         <br>
         {% for message in get_flashed_messages() %}
-         <div class="flash">{{ message }}</div>
+            <div class="flash">{{ message }}</div>
         {% endfor %}
-    </body>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
 </html>

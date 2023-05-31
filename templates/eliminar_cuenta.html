@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Eliminar Cuenta</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
-    </head>
-    <body>
-        <h1>Eliminar Cuenta</h1>
+<head>
+    <title>Eliminar Cuenta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Eliminar Cuenta</h1>
         <br>
         <form action="/info/delete_user" onsubmit="return confirm('¿Estás seguro de querer borrar tu cuenta? Esta acción no se puede deshacer');" method="post">
-            <label for="contrasenia">Ingresa tu contraseña:</label>
-            <input type="text" id="contrasenia" name="contrasenia" required><br><br>
+            <div class="form-group row">
+                <label for="contrasenia" class="col-sm-2 col-form-label">Ingresa tu contraseña:</label>
+                <div class="col-sm-10">
+                    <input type="password" id="contrasenia" name="contrasenia" class="form-control" required>
+                </div>
+            </div>
 
-            <input type="submit" value="Confirmar">
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <input type="submit" value="Confirmar" class="btn btn-danger">
+                </div>
+            </div>
         </form>
         <br>
         {% for message in get_flashed_messages() %}
-         <div class="flash">{{ message }}</div>
+         <div class="flash alert alert-info">{{ message }}</div>
         {% endfor %}
-    </body>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
 </html>
