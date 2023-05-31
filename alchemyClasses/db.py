@@ -124,7 +124,7 @@ class Orden(db.Model):
         self.estatus = estatus
         self.fecha = fecha
         self.total = total
-
+        
 
 class VendedorAtenderOrden(db.Model):
     __tablename__ = 'vendedor_atender_orden'

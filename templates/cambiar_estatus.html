@@ -100,7 +100,7 @@
         <option value="orden aceptada">Orden aceptada</option>
         <option value="orden en proceso">Orden en proceso</option>
         <option value="orden enviada">Orden enviada</option>
-        <option value="orden enviada">Orden enviada</option>
+        <option value="orden entregada">Orden entregada</option>
       </select>
       <br><br>
       <input type="submit" value="Cambiar">
@@ -108,6 +108,10 @@
     
     <div class="return-button">
       <a href="{{ url_for('ordenes.order_management') }}">Regresar a la interfaz</a>
+      <div class="return-button">
+        <p>Enlace de monitoreo: <a href="{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}">{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}</a></p>
+      </div>
+      
     </div>
   </div>
 </body>
