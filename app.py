@@ -26,20 +26,16 @@ def index():
 
 @app.route('/productos')
 def product():
-    products = get_products()
-    for product in products:
-        print(product.nombre)
-    return render_template('ProductosAdmin.html', productos=products)
+    return render_template('ProductosAdmin.html', productos=get_products())
 
 
 @app.route('/obtainProductInfo', methods=['POST'])
 def obtain_product_info():
     if request.method == 'POST':
-        print(request.form)
         if request.form.__len__() != 1:
             return render_template('obtainProductInfo.html')
         else:
-            return render_template('obtainProductInfo.html', id_prd = request.form['id_producto'])
+            return render_template('obtainProductInfo.html', id_prd=request.form['id_producto'])
 
 
 @app.route('/itinerarios')
