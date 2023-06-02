@@ -66,15 +66,6 @@ def view_order(order_id):
     # Render the order detail page
     return render_template('cambiar_estatus.html', order=order)
 
-
-@ordenesBlueprint.route('/interfaz')
-def order_management():
-    # Retrieve all orders from the database
-    orders = Orden.query.all()
-
-    # Render the order management page
-    return render_template('interfaz_ordenes.html', orders=orders)
-
 @ordenesBlueprint.route('/ver_ordenes')
 def customer_orders():
     # Retrieve all orders from the database
