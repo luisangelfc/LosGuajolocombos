@@ -1,5 +1,21 @@
 import re
-from alchemyClasses.db import Usuario, db
+from alchemyClasses.db import Usuario, Vendedor, Administrador, db
+
+def getCredencial(nombre):
+    usuario = getCliente(nombre)
+    if usuario == None:
+        return -1
+    if Administrador.query.filter(Administrador.id_usuario == usuario.id).first() != None:
+        return 0
+    if Vendedor.query.filter(Vendedor.id_usuario == usuario.id).first() != None:
+        return 1
+    return 2
+
+def getCliente(nombre):
+    return Usuario.query.filter(Usuario.nombre == nombre).first()
+
+def getClienteId(id):
+    return Usuario.query.filter(Usuario.id_usuario == id).first()
 
 def nombreExistente(nombre):
     return Usuario.query.filter(Usuario.nombre == nombre).first() != None

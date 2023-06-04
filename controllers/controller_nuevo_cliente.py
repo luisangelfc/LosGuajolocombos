@@ -1,4 +1,4 @@
-from models.model_cliente import nombreExistente, contraseniaSegura, registraCliente
+from models.model_cliente import nombreExistente, contraseniaSegura, registraCliente, getCliente, getCredencial
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
@@ -17,8 +17,9 @@ def registro():
             return redirect(url_for('registro.registro'))
         registraCliente(usuario, contrasenia)
         session.clear()
-        session['usuario'] = usuario
-        session['contrasenia'] = contrasenia
+        cliente = getCliente(usuario)
+        session['usuario'] = cliente.id
+        session['credencial'] = getCredencial(usuario)
         return redirect(url_for('registro.success')) # Esto debe llevar a la página de inicio
     else:
         return render_template('registro.html')
