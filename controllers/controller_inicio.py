@@ -16,7 +16,7 @@ def inicio():
             flash('Contraseña incorrecta')
             return redirect(url_for('inicio.inicio'))
         cliente = getCliente(usuario)
-        session['usuario'] = cliente.id
+        session['usuario'] = cliente.id_usuario
         session['credencial'] = getCredencial(cliente.nombre)
         return render_template('inicio.html')
     else:

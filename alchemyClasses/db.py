@@ -6,7 +6,7 @@ class Usuario(db.Model):
     id_usuario = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(64), nullable=False, unique=True)
     contrasenia = db.Column(db.String(128), nullable=False)
-    direccion = db.Column(db.VARCHAR(), nullable=True)
+    direccion = db.Column(db.VARCHAR(256), nullable=True)
 
     def __init__(self, nombre, contrasenia):
         self.id_usuario = Usuario.query.order_by(Usuario.id_usuario.desc()).first().id_usuario + 1 # Puede arreglarse desde la bd
@@ -17,7 +17,6 @@ class Usuario(db.Model):
 class Administrador(db.Model):
     __tablename__ = 'administrador'
     id_admin = db.Column(db.Integer, primary_key=True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'))
 
     def __init__(self, id_usuario):
         self.id_usuario = id_usuario

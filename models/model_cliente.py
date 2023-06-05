@@ -9,9 +9,9 @@ def getCredencial(nombre):
     usuario = getCliente(nombre)
     if usuario == None:
         return -1
-    if Administrador.query.filter(Administrador.id_usuario == usuario.id).first() != None:
+    elif Administrador.query.filter(Administrador.id_admin == usuario.id_usuario).first() != None:
         return 0
-    if Vendedor.query.filter(Vendedor.id_usuario == usuario.id).first() != None:
+    elif Vendedor.query.filter(Vendedor.id_vendedor == usuario.id_usuario).first() != None:
         return 1
     return 2
 

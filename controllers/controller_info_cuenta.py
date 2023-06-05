@@ -1,5 +1,5 @@
 from models.model_cliente import getClienteId, getCredencial, nombreExistente, bajaCliente, actualizaNombreCliente, actualizaContrasenia, \
-    contraseniaSegura, actualizaDireccion, verificaContrasenia
+    contraseniaSegura, actualizaDireccion, verificaContrasenia, ADMIN
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
@@ -10,8 +10,8 @@ info_bp = Blueprint('info', __name__, url_prefix='/info')
 def info():
     if session.get('usuario') != None:
         cliente = getClienteId(session.get('usuario'))
-        if getCredencial(cliente.nombre) !=  2:
-            return "No eres usuario"
+        if getCredencial(cliente.nombre) != ADMIN:
+            return "No eres administrador"
         return render_template('info.html', cliente=cliente)
     flash("Error: no se ha iniciado sesión")
     return redirect(url_for('inicio.inicio'))
