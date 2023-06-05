@@ -1,10 +1,11 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request, session
 from alchemyClasses.db import db
 from SQL.credentials import username, passw
 from controllers.controller_productos import productosBlueprint, get_products, agregar_producto, modificar_producto
 from controllers.controller_itinerarios import itinerariosBlueprint, obtener_itinerarios
 from controllers.controller_nuevo_cliente import registro_bp
 from controllers.controller_info_cuenta import info_bp
+from models.model_cliente import ADMIN, VENDEDOR, CLIENTE
 
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registro_bp)
@@ -31,16 +32,21 @@ def product():
 
 @app.route('/obtainProductInfo', methods=['POST'])
 def obtain_product_info():
-    if request.method == 'POST':
+    if request.method == 'POST' and session['credencial'] is not None and session['credencial'] == ADMIN:
         if request.form.__len__() != 1:
             return render_template('obtainProductInfo.html')
         else:
             return render_template('obtainProductInfo.html', id_prd=request.form['id_producto'])
+    else:
+        return render_template('inicio.html')
 
 
-@app.route('/itinerarios')
+@app.route('/itinerarios', methods=['GET'])
 def itinerario():
-    return render_template('ItinerariosAdmin.html', itinerarios=obtener_itinerarios())
+    if session['credencial'] is not None and session['credencial'] == ADMIN:
+        return render_template('ItinerariosAdmin.html', itinerarios=obtener_itinerarios())
+    else:
+        return render_template('inicio.html')
 
 
 if __name__ == '__main__':

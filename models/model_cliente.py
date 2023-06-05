@@ -1,6 +1,10 @@
 import re
 from alchemyClasses.db import Usuario, Vendedor, Administrador, db
 
+ADMIN = 0
+VENDEDOR = 1
+CLIENTE = 2
+
 def getCredencial(nombre):
     usuario = getCliente(nombre)
     if usuario == None:
