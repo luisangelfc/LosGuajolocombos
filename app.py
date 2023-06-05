@@ -6,9 +6,11 @@ from controllers.controller_itinerarios import itinerariosBlueprint, obtener_iti
 from controllers.controller_nuevo_cliente import registro_bp
 from controllers.controller_info_cuenta import info_bp
 from models.model_cliente import ADMIN, VENDEDOR, CLIENTE
+from controllers.controller_inicio import inicio_bp
 
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registro_bp)
+app.register_blueprint(inicio_bp)
 app.register_blueprint(info_bp)
 app.register_blueprint(productosBlueprint)
 app.register_blueprint(itinerariosBlueprint)
@@ -22,7 +24,7 @@ db.init_app(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return redirect(url_for('registro.registro'))
+    return redirect(url_for('inicio.inicio'))
 
 
 @app.route('/productos')
@@ -41,7 +43,7 @@ def obtain_product_info():
         return render_template('inicio.html')
 
 
-@app.route('/itinerarios', methods=['GET'])
+@app.route('/itinerarios')
 def itinerario():
     if session['credencial'] is not None and session['credencial'] == ADMIN:
         return render_template('ItinerariosAdmin.html', itinerarios=obtener_itinerarios())
