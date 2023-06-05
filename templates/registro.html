@@ -6,7 +6,7 @@
 </head>
 <body>
     <section class="vh-100" style="background-color: #1E213D;">
-        <div class="container h-100 d-flex justify-content-center align-items-center">
+        <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
             <div class="card p-4">
                 <h1 class="text-center">Registro</h1>
                 <form action="/registro" method="post">
@@ -28,6 +28,9 @@
                 {% for message in get_flashed_messages() %}
                     <div class="flash">{{ message }}</div>
                 {% endfor %}
+            </div>
+            <div class="card p-4 mt-3 rounded text-center">
+                ¿Ya tienes cuenta? <a href="{{ url_for('inicio.inicio') }}">Iniciar sesión</a>
             </div>
         </div>
     </section>
