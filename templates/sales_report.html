@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reportes de Venta</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #C1DFF4, #1F6FAE);
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+        }
+    
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border: 1px solid #A7C5E1;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1 {
+            text-align: center;
+            color: #286EAA;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+    
+        h2 {
+            margin-top: 40px;
+            color: #286EAA;
+            font-size: 24px;
+        }
+    
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+            color: #286EAA;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Reportes de Venta</h1>
+        
+        <h2>Reportes del día</h2>
+        {% if not reports_day %}
+            <p>{{ no_sales_message }}</p>
+        {% else %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Final</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports_day %}
+                    <tr>
+                        <td>{{ report.id_reporte_ventas }}</td>
+                        <td>{{ report.fecha_inicio }}</td>
+                        <td>{{ report.fecha_fin }}</td>
+                        <td>{{ report.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        <h2>Reportes de la semana</h2>
+        {% if not reports_week %}
+            <p>No hay reportes disponibles para la semana.</p>
+        {% else %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Final</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports_week %}
+                    <tr>
+                        <td>{{ report.id_reporte_ventas }}</td>
+                        <td>{{ report.fecha_inicio }}</td>
+                        <td>{{ report.fecha_fin }}</td>
+                        <td>{{ report.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>

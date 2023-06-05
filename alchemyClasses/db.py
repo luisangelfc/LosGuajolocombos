@@ -114,7 +114,7 @@ class Orden(db.Model):
     __tablename__ = 'orden'
     id_orden = db.Column(db.Integer, primary_key=True)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
-    estatus = db.Column(db.Boolean, nullable=False)
+    estatus = db.Column(db.String(20), nullable=False)  # Change the data type to String
     fecha = db.Column(db.Date, nullable=False)
     total = db.Column(db.Float, nullable=False)
 
@@ -123,7 +123,7 @@ class Orden(db.Model):
         self.estatus = estatus
         self.fecha = fecha
         self.total = total
-
+        
 
 class VendedorAtenderOrden(db.Model):
     __tablename__ = 'vendedor_atender_orden'
@@ -148,16 +148,15 @@ class ProductoOrden(db.Model):
 class ReporteVentas(db.Model):
     __tablename__ = 'reporte_ventas'
     id_reporte_ventas = db.Column(db.Integer, primary_key=True)
-    id_vendedor = db.Column(db.Integer, db.ForeignKey('vendedor.id_vendedor'))
     fecha_inicio = db.Column(db.Date, nullable=False)
     fecha_fin = db.Column(db.Date, nullable=False)
     total = db.Column(db.Float, nullable=False)
 
-    def __init__(self, fecha_inicio, fecha_fin, total, id_vendedor=None):
+    def __init__(self, fecha_inicio, fecha_fin, total):
         self.fecha_inicio = fecha_inicio
         self.fecha_fin = fecha_fin
         self.total = total
-        self.id_vendedor = id_vendedor
+
 
 
 class ProductosEnReporte(db.Model):
