@@ -3,6 +3,7 @@ from alchemyClasses.db import Orden
 
 customerOrdersBlueprint = Blueprint('customer_orders', __name__, url_prefix='/orden')
 
+
 @customerOrdersBlueprint.route('/<int:order_id>')
 def view_customer_order(order_id):
     # Retrieve the order from the database
@@ -15,6 +16,7 @@ def view_customer_order(order_id):
 
     # Render the order detail page
     return render_template('cliente_monitorea_estatus.html', order=order)
+
 
 @customerOrdersBlueprint.route('orden_entregada')
 def order_delivered():

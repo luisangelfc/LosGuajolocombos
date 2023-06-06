@@ -1,6 +1,7 @@
 import datetime
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from alchemyClasses.db import db, Orden, ReporteVentas
+from models.model_cliente import ADMIN, VENDEDOR, CLIENTE
 from datetime import datetime
 
 ordenesBlueprint = Blueprint('ordenes', __name__, url_prefix='/ordenes')
@@ -24,7 +25,6 @@ def create_order():
 
         # Redirect to the order detail page
         return redirect(url_for('ordenes.view_order', order_id=new_order.id_orden))
-        
 
     # Render the order creation form
     return render_template('crear_orden.html')
@@ -55,7 +55,7 @@ def view_order(order_id):
 
             # Redirect to the seller_view_orders page
             return redirect(url_for('ordenes.customer_orders'))
-        
+
         # Update the order's status
         order.estatus = new_status
         db.session.commit()
@@ -66,10 +66,17 @@ def view_order(order_id):
     # Render the order detail page
     return render_template('cambiar_estatus.html', order=order)
 
+
 @ordenesBlueprint.route('/ver_ordenes')
 def customer_orders():
-    # Retrieve all orders from the database
-    orders = Orden.query.all()
+    if session.get('credencial') is not None and session.get('credencial') == VENDEDOR:
+        # Retrieve all orders from the database
+        orders = Orden.query.all()
 
-    # Render the orders list page
-    return render_template('vendedor_ver_ordenes.html', orders=orders)
+        # Render the orders list page
+        return render_template('vendedor_ver_ordenes.html', orders=orders)
+
+    elif session.get('credencial') is None:
+        return render_template('inicio_sesión.html')
+    else:
+        redirect(url_for('info.info'))

@@ -31,14 +31,6 @@ app.config.from_mapping(
 db.init_app(app)
 
 
-# def create_tables():
-#     with app.app_context():
-#         db.create_all()
-#
-#
-# create_tables()
-
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return redirect(url_for('inicio.inicio'))
