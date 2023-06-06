@@ -18,6 +18,6 @@ def inicio():
         cliente = getCliente(usuario)
         session['usuario'] = cliente.id_usuario
         session['credencial'] = getCredencial(cliente.nombre)
-        return render_template('inicio.html')
+        return render_template('info.html', cliente = cliente)
     else:
         return render_template('inicio_sesión.html')

@@ -20,13 +20,13 @@ def registro():
         cliente = getCliente(usuario)
         session['usuario'] = cliente.id
         session['credencial'] = getCredencial(usuario)
-        return redirect(url_for('registro.success')) # Esto debe llevar a la página de inicio
+        return redirect(url_for('registro.success'))
     else:
         return render_template('registro.html')
 
 @registro_bp.route('/success', methods = ['GET'])
 def success():
     if session.get('usuario') != None:
-        return render_template('inicio.html') # Cuando haya un menú de inicio hay que redirigir a ese.
+        return render_template('info.html', cliente = cliente)
     flash("Error: no se ha iniciado sesión")
     return redirect(url_for('registro.registro'))
