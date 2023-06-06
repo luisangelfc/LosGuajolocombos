@@ -28,9 +28,6 @@
                                 <li class="nav-item">
                                   <a class="nav-link mx-2 text-uppercase" href="/ordenes/crear">Crear Orden</a>
                                 </li>
-                                <li class="nav-item">
-                                  <a class="nav-link mx-2 text-uppercase" href="/ordenes/ver_ordenes">Ver lista de ordenes</a>
-                                </li>
                             {% endif %}
                       </ul>
                       <ul class="navbar-nav ms-auto ">
@@ -51,9 +48,11 @@
                     <th>Nombre</th>
                     <td>{{ cliente.nombre }}</td>
                     <td>
-                        <form action="/info/user_change" method="get">
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </form>
+                        {% if session.get('credencial') != 1 %}
+                            <form action="/info/user_change" method="get">
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </form>
+                        {% endif %}
                     </td>
                 </tr>
                 <tr>
@@ -75,18 +74,24 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/info/dir_change" method="get">
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </form>
+                        {% if session.get('credencial') != 1 %}
+                            <form action="/info/dir_change" method="get">
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </form>
+                        {% endif %}
                     </td>
                 </tr>
             </table>
-            <br>
-            <form action="/info/delete_user" method="get">
-                <button type="submit" class="btn btn-danger">Eliminar Cuenta</button>
-            </form>
-            <br>
-            <br>
+            {% if session.get('credencial') != 1 %}
+
+                <br>
+                <form action="/info/delete_user" method="get">
+                    <button type="submit" class="btn btn-danger">Eliminar Cuenta</button>
+                </form>
+                <br>
+
+            {% endif %}
+
             {% for message in get_flashed_messages() %}
             <div class="flash alert alert-info">{{ message }}</div>
             {% endfor %}

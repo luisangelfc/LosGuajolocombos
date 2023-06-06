@@ -9,7 +9,7 @@ ordenesBlueprint = Blueprint('ordenes', __name__, url_prefix='/ordenes')
 
 @ordenesBlueprint.route('/crear', methods=['GET', 'POST'])
 def create_order():
-    if request.method == 'POST':
+    if request.method == 'POST' and session.get('credencial') is not None and session.get('credencial') == CLIENTE:
         # Get form data
         id_usuario = int(request.form['id_usuario'])
         estatus = "Sin status"  # Assuming the initial status is "order placed"
@@ -24,10 +24,11 @@ def create_order():
         db.session.commit()
 
         # Redirect to the order detail page
-        return redirect(url_for('ordenes.view_order', order_id=new_order.id_orden))
-
-    # Render the order creation form
-    return render_template('crear_orden.html')
+        return render_template('cliente_monitorea_estatus.html', order_id=new_order.id_orden)
+        #return redirect(url_for('ordenes.view_order', order_id=new_order.id_orden))
+    else:
+        # Render the order creation form
+        return redirect(url_for('info.info'))
 
 
 @ordenesBlueprint.route('/<int:order_id>', methods=['GET', 'POST'])
@@ -50,8 +51,8 @@ def view_order(order_id):
             db.session.commit()
 
             # Delete the order from the database
-            db.session.delete(order)
-            db.session.commit()
+            #db.session.delete(order)
+            #db.session.commit()
 
             # Redirect to the seller_view_orders page
             return redirect(url_for('ordenes.customer_orders'))
