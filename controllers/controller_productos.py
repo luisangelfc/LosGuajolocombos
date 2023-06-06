@@ -39,9 +39,9 @@ def agregar_producto():
 def modificar_producto():
     if request.method == 'POST':
         producto = request.form
-        print('pass')
+        print(request.form)
         categoria = find_categoria_by_id(producto['id_categoria_producto'])
-        print('pass')
+        print(producto['id_producto'])
         if get_product(producto['id_producto']) is not None:
             print('pass')
             if categoria is not None:

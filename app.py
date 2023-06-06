@@ -44,8 +44,9 @@ def product():
 @app.route('/obtainProductInfo', methods=['POST'])
 def obtain_product_info():
     if request.method == 'POST' and session.get('usuario') is not None and session.get('credencial') == ADMIN:
-        if request.form.__len__() != 1:
-            return render_template('obtainProductInfo.html')
+        if "id_producto" not in request.form:
+            print("NONE")
+            return render_template('obtainProductInfo.html', id_prd = -1)
         else:
             return render_template('obtainProductInfo.html', id_prd=request.form['id_producto'])
     else:

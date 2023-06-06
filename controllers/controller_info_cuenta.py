@@ -38,8 +38,6 @@ def password_change():
     if session.get('usuario') == None:
         flash("Error: no se ha iniciado sesión")
         return redirect(url_for('inicio.inicio'))
-    if session.get('credencial') != 2:
-        return "No eres usuario"
     if request.method == 'POST':
         nueva_contra = request.form['nueva_contra']
         cliente = getClienteId(session.get('usuario'))
@@ -61,8 +59,8 @@ def dir_change():
     if session.get('usuario') == None:
         flash("Error: no se ha iniciado sesión")
         return redirect(url_for('registro.registro'))
-    if session.get('credencial') != 2:
-        return "No eres usuario"
+    if session.get('credencial') == 1:
+        return redirect(url_for('info.info'))
     if request.method == 'POST':
         direccion = request.form['direccion']
         cliente = getClienteId(session.get('usuario'))

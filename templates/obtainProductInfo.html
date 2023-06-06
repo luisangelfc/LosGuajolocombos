@@ -35,26 +35,26 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-9">
 
-                    {% if id_prd == None %}
+                    {% if id_prd == -1 %}
 
-                                <h1 class="text-white mb-4">Registro de Nuevo Producto</h1>
+                        <h1 class="text-white mb-4">Registro de Nuevo Producto</h1>
 
-                            {% else %}
+                    {% else %}
 
-                                    <h1 class="text-white mb-4">Modificacion de Producto</h1>
+                            <h1 class="text-white mb-4">Modificacion de Producto {{ id_prd }}</h1>
 
-                            {% endif %}
+                    {% endif %}
 
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body">
 
-                            {% if id_prd == None %}
+                            {% if id_prd == -1 %}
 
                                 <form action="/productos" method="post" enctype="multipart/form-data" id="mainForm">
 
                             {% else %}
 
-                                    <form action="/productos/modProduct" method="post" enctype="multipart/form-data" id="mainForm">
+                                <form action="/productos/modProduct" method="post" enctype="multipart/form-data" id="mainForm">
 
                             {% endif %}
 
@@ -131,7 +131,7 @@
 
                                 <div class="px-5 py-4">
 
-                                    {% if id_prd == None %}
+                                    {% if id_prd == -1 %}
 
                                         <input type="submit" class="btn btn-primary btn-lg" id="submitBtn">
 

@@ -54,6 +54,7 @@
             <p>Orden ID: {{ order.id_orden }}</p>
             <p>Usuario ID: {{ order.id_usuario }}</p>
             <p>Estatus: {{ order.estatus }}</p>
+            <p>Total: {{ order.total }}</p>
             <form method="POST" action="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">
                 <label for="estatus">Cambiar estatus:</label>
                 <select name="estatus" id="estatus">
