@@ -69,10 +69,5 @@ def itinerario():
         return render_template('inicio.html')
 
 
-@app.route('/ordenes/interfaz')
-def interfaz_ordenes():
-    return render_template('interfaz_ordenes.html', itinerarios=obtener_itinerarios())
-
-
 if __name__ == '__main__':
     app.run(host="localhost", port=8000, debug=True)

@@ -1,38 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Detalles de la orden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-        body {
+        .background-color {
             background-color: #1E213D;
-            color: white;
         }
-        .navbar {
-            background-color: #000;
-        }
-        .navbar .nav-link {
-            margin-right: 1rem;
-            color: white !important;
-        }
-        h1 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        form {
-            margin-bottom: 1rem;
-        }
-        .return-button a {
-            color: white;
-        }
-        .container {
+
+        .custom-container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            text-align: center;
+            max-width: 600px; 
             margin-left: auto;
             margin-right: auto;
         }
+
+        .custom-container p {
+            margin-bottom: 10px;
+            line-height: 2;
+        }
+
+
     </style>
 </head>
-<body>
+<body class="background-color">
     <nav class="navbar navbar-expand-lg bg-black sticky-top navbar-dark p-3 shadow-sm">
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -45,34 +39,38 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 text-uppercase" href="#"><i class="fa-solid fa-circle-user me-1"></i> Account</a>
-                    </li>
+                   
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="container">
-        <h1>Detalles de la orden</h1>
-        <p>Orden ID: {{ order.id_orden }}</p>
-        <p>Usuario ID: {{ order.id_usuario }}</p>
-        <p>Estatus: {{ order.estatus }}</p>
-        <form method="POST" action="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">
-            <label for="estatus">Cambiar estatus:</label>
-            <select name="estatus" id="estatus">
-                <option value="orden realizada">Orden realizada</option>
-                <option value="orden aceptada">Orden aceptada</option>
-                <option value="orden en proceso">Orden en proceso</option>
-                <option value="orden enviada">Orden enviada</option>
-                <option value="orden entregada">Orden entregada</option>
-            </select>
-            <br><br>
-            <input type="submit" value="Cambiar">
-        </form>
-        <div class="return-button">
-            <p>Enlace de monitoreo: <a href="{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}">{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}</a></p>
+
+    <div class="container custom-container mx-auto">
+        <div class="card p-4">
+            <h1 class="text-center">Detalles de la orden</h1>
+            <br>
+            <p>Orden ID: {{ order.id_orden }}</p>
+            <p>Usuario ID: {{ order.id_usuario }}</p>
+            <p>Estatus: {{ order.estatus }}</p>
+            <form method="POST" action="{{ url_for('ordenes.view_order', order_id=order.id_orden) }}">
+                <label for="estatus">Cambiar estatus:</label>
+                <select name="estatus" id="estatus">
+                    <option value="orden realizada">Orden realizada</option>
+                    <option value="orden aceptada">Orden aceptada</option>
+                    <option value="orden en proceso">Orden en proceso</option>
+                    <option value="orden enviada">Orden enviada</option>
+                    <option value="orden entregada">Orden entregada</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Cambiar" class="btn btn-primary">
+            </form>
+            <br>
+            <div class="return-button">
+                <p>Enlace de monitoreo: <a href="{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}">{{ url_for('customer_orders.view_customer_order', order_id=order.id_orden) }}</a></p>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
