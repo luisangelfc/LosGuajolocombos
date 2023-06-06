@@ -16,6 +16,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link mx-2 text-uppercase" href="/itinerarios">Itinerario</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2 text-uppercase" href="/sales">Reporte de Ventas</a>
+                                </li>
                           </ul>
                           <ul class="navbar-nav ms-auto ">
                                 <li class="nav-item">
@@ -26,33 +29,39 @@
               </div>
         </nav>
 
-        <table class="table table-striped table-bordered">
+        <section class="vh-100" style="background-color: #1E213D;">
 
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col"># Itinerario</th>
-                    <th scope="col"># Inventario</th>
-                    <th scope="col"># Vendedor</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio Total</th>
-                    <th scope="col">Fecha Entrega</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for itinerario in itinerarios %}
+            <div class="container">
+                <br>
+                <h1 class="text-center text-white">Itinerarios</h1>
+                <br>
+                <table class="table table-light table-striped table-bordered">
+                    <thead class="table-dark">
                     <tr>
-                        <th scope="row">{{ itinerario.id_itinerario }}</th>
-                        <td>{{ itinerario.id_inventario }}</td>
-                        <td>{{ itinerario.id_vendedor }}</td>
-                        <td>{{ itinerario.cantidad }}</td>
-                        <td>{{ itinerario.precio_total }}</td>
-                        <td>{{ itinerario.fecha_entrega }}</td>
+                        <th scope="col"># Itinerario</th>
+                        <th scope="col"># Inventario</th>
+                        <th scope="col"># Vendedor</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio Total</th>
+                        <th scope="col">Fecha Entrega</th>
                     </tr>
-                {% endfor %}
+                    </thead>
+                    <tbody>
+                    {% for itinerario in itinerarios %}
+                        <tr>
+                            <th scope="row">{{ itinerario.id_itinerario }}</th>
+                            <td>{{ itinerario.id_inventario }}</td>
+                            <td>{{ itinerario.id_vendedor }}</td>
+                            <td>{{ itinerario.cantidad }}</td>
+                            <td>{{ itinerario.precio_total }}</td>
+                            <td>{{ itinerario.fecha_entrega }}</td>
+                        </tr>
+                    {% endfor %}
 
-            </tbody>
-        </table>
-
+                    </tbody>
+                </table>
+            </div>
+        </section>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </body>
 </html>

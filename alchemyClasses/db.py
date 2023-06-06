@@ -18,17 +18,16 @@ class Administrador(db.Model):
     __tablename__ = 'administrador'
     id_admin = db.Column(db.Integer, primary_key=True)
 
-    def __init__(self, id_usuario):
-        self.id_usuario = id_usuario
+    def __init__(self, id_admin):
+        self.id_admin = id_admin
 
 
 class Vendedor(db.Model):
     __tablename__ = 'vendedor'
     id_vendedor = db.Column(db.Integer, primary_key=True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'))
 
-    def __init__(self, id_usuario):
-        self.id_usuario = id_usuario
+    def __init__(self, id_vendedor):
+        self.id_vendedor = id_vendedor
 
 
 class CategoriaInventario(db.Model):

@@ -11,8 +11,7 @@ from controllers.controller_ordenes import ordenesBlueprint
 from controllers.controller_sales_report import salesBlueprint
 from controllers.controller_cliente_monitorea_pedido import customerOrdersBlueprint
 
-
-from sqlalchemy import  func
+from sqlalchemy import func
 
 app = Flask(__name__, instance_relative_config=True)
 app.register_blueprint(registro_bp)
@@ -24,20 +23,20 @@ app.register_blueprint(ordenesBlueprint)
 app.register_blueprint(customerOrdersBlueprint)
 app.register_blueprint(salesBlueprint)
 
-
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://' + username + ':' + passw + '@localhost:5432/Ingenieria'
 
 app.config.from_mapping(
     SECRET_KEY='dev'
 )
 db.init_app(app)
 
-def create_tables():
-    with app.app_context():
-        db.create_all()
 
-create_tables()
+# def create_tables():
+#     with app.app_context():
+#         db.create_all()
+#
+#
+# create_tables()
 
 
 @app.route('/', methods=['GET', 'POST'])
