@@ -6,6 +6,12 @@ from datetime import datetime
 
 ordenesBlueprint = Blueprint('ordenes', __name__, url_prefix='/ordenes')
 
+@ordenesBlueprint.route('/')
+def make_order():
+    if session.get('credencial') is not None and session.get('credencial') == CLIENTE:
+        return render_template('crear_orden.html')
+    else:
+        return redirect(url_for('info.info'))
 
 @ordenesBlueprint.route('/crear', methods=['GET', 'POST'])
 def create_order():
@@ -24,7 +30,7 @@ def create_order():
         db.session.commit()
 
         # Redirect to the order detail page
-        return render_template('cliente_monitorea_estatus.html', order_id=new_order.id_orden)
+        return render_template('cliente_monitorea_estatus.html', order=new_order)
         #return redirect(url_for('ordenes.view_order', order_id=new_order.id_orden))
     else:
         # Render the order creation form

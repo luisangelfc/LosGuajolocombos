@@ -1,4 +1,4 @@
-from models.model_cliente import nombreExistente, contraseniaSegura, registraCliente, getCliente, getCredencial
+from models.model_cliente import nombreExistente, contraseniaSegura, registraCliente, getCliente, getCredencial, getClienteId
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
@@ -18,7 +18,7 @@ def registro():
         registraCliente(usuario, contrasenia)
         session.clear()
         cliente = getCliente(usuario)
-        session['usuario'] = cliente.id
+        session['usuario'] = cliente.id_usuario
         session['credencial'] = getCredencial(usuario)
         return redirect(url_for('registro.success'))
     else:
@@ -27,6 +27,7 @@ def registro():
 @registro_bp.route('/success', methods = ['GET'])
 def success():
     if session.get('usuario') != None:
+        cliente = getClienteId(session.get('usuario'))
         return render_template('info.html', cliente = cliente)
     flash("Error: no se ha iniciado sesión")
     return redirect(url_for('registro.registro'))
